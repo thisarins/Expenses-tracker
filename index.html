@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation bar -->
+  <nav class="navbar">
+    <div class="container">
+      <span class="brand">Personal Expense Tracker</span>
+    </div>
+  </nav>
+
+  <main class="container">
+    <header class="page-header">
+      <h1>Financial Dashboard</h1>
+      <p>Manage your incomes and expenses in one place.</p>
+    </header>
+
+    <!-- Summary cards -->
+    <section class="summary" aria-label="Summary">
+      <div class="card summary-card">
+        <span class="label">Total Income</span>
+        <strong id="totalIncome">LKR 0.00</strong>
+      </div>
+      <div class="card summary-card">
+        <span class="label">Total Expenses</span>
+        <strong id="totalExpenses">LKR 0.00</strong>
+      </div>
+      <div class="card summary-card">
+        <span class="label">Current Balance</span>
+        <strong id="currentBalance">LKR 0.00</strong>
+      </div>
+    </section>
+
+    <!-- Transaction form -->
+    <section class="card">
+      <h2 class="card-title">Add a Transaction</h2>
+      <form id="transactionForm" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="type">Transaction Type</label>
+            <select id="type">
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="description">Description</label>
+            <input type="text" id="description" placeholder="e.g. Monthly allowance">
+          </div>
+
+          <div class="field">
+            <label for="amount">Amount (LKR)</label>
+            <input type="number" id="amount" placeholder="Enter amount" min="0" step="0.01">
+          </div>
+
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category">
+              <option value="">Select a category</option>
+              <option>Allowance</option>
+              <option>Salary</option>
+              <option>Food</option>
+              <option>Transport</option>
+              <option>Education</option>
+              <option>Entertainment</option>
+              <option>Shopping</option>
+              <option>Bills</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="date">Transaction Date</label>
+            <input type="date" id="date">
+          </div>
+        </div>
+
+        <p id="formError" class="form-error" role="alert" hidden></p>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Add Transaction</button>
+          <button type="button" id="clearBtn" class="btn btn-outline">Clear Form</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Transaction history -->
+    <section class="card">
+      <h2 class="card-title">Transaction History</h2>
+
+      <div class="form-grid filters">
+        <div class="field">
+          <label for="filterType">Filter by Type</label>
+          <select id="filterType">
+            <option value="all">All Transactions</option>
+            <option value="income">Income Only</option>
+            <option value="expense">Expenses Only</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="search">Search Transactions</label>
+          <input type="search" id="search" placeholder="Search by description or category">
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Category</th>
+              <th class="num">Amount (LKR)</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="transactionBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Personal Expense Tracker | Front-End Development Lab</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
